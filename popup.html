@@ -13,12 +13,13 @@
 			}
 
 			.extension-div-enabled, .extension-div-disabled {
-				margin: 4px;
+				margin: 8px;
 				border: 1px solid #ddd;
 				border-radius: 4px;
-				padding: 4px;
+				padding: 6px;
 				text-align: center;
 				position: relative;
+				box-shadow: 0 0 4px #ccc;
 			}
 
 			.extension-div-enabled .name-div {
@@ -36,37 +37,57 @@
 				color: white;
 			}
 
-			.left-img {
-				width: 48px;
-				height: 48px;
+			.right-img {
+				width: 44px;
+				height: 44px;
 				display: inline;
 				/*float: left;*/
 				/*position: absolute;*/
 			}
 
-			.right-content {
+			.right-img img {
+				width: 44px;
+				height: 44px;
+			}
+
+			.left-content {
 				width: 80%;
-				height: 100%;
-				/*display: inline-block;*/
+				/*height: 100%;*/
+				display: inline;
+				display: inline-block;
 				float: left;
+			}
+
+			#github-icon img {
+				height: 24px;
+				width: 24px;
+				position: relative;
+				left: 10px;
+				top: 3px;
+			}
+
+			.desc-div {
+				position: relative;
+				height: 2.5em;
+				overflow: hidden;
 			}
 
 		</style>
 	</head>
 	<body>
-		<h1>EXTY-SWITCHY</h1>
+		<h1>EXTY-SWITCHY<span id="github-icon"><img src="icons/github.svg"></span></h1>
 		<div id="container">
 			<div class="extension-div-enabled">
 				<div class="name-div">Grammarly</div>
-				<div class="left-img">
-					<img src="https://i.stack.imgur.com/YDRAT.jpg?s=48&g=1" alt="">
-				</div>
-				<div class="right-content">				
-					<div class="desc">this extension does this this extension does this this extension does this</div>
+				<div class="left-content">				
+					<div class="desc-div">this extension does this this extension does this n does this this extension does this n does this this extension does this this extension does this</div>
 					<div class="options">
 						<input type="checkbox" id="chr1">
 						<label for="chr1">Enabled</label>
 					</div>
+				</div>
+				<div class="right-img">
+					<img src="https://i.stack.imgur.com/YDRAT.jpg?s=48&g=1" alt="">
 				</div>
 			</div>
 		</div>
