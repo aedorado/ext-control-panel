@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Exty-Switchy</title>
+		<style>
+			body {
+			    width: 400px;
+			    font-family: Verdana;
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			.extension-div-enabled, .extension-div-disabled {
+				margin: 4px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				padding: 4px;
+				text-align: center;
+				position: relative;
+			}
+
+			.extension-div-enabled .name-div {
+				background-color: green;
+			}
+
+			.extension-div-disabled .name-div {
+				background-color: red;
+			}
+
+			.name-div {
+				border-bottom: 1px solid #ddd;
+				padding-bottom: 2px;
+				font-weight: bold;
+				color: white;
+			}
+
+			.left-img {
+				width: 48px;
+				height: 48px;
+				display: inline;
+				/*float: left;*/
+				/*position: absolute;*/
+			}
+
+			.right-content {
+				width: 80%;
+				height: 100%;
+				/*display: inline-block;*/
+				float: left;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>EXTY-SWITCHY</h1>
+		<div id="container">
+			<div class="extension-div-enabled">
+				<div class="name-div">Grammarly</div>
+				<div class="left-img">
+					<img src="https://i.stack.imgur.com/YDRAT.jpg?s=48&g=1" alt="">
+				</div>
+				<div class="right-content">				
+					<div class="desc">this extension does this this extension does this this extension does this</div>
+					<div class="options">
+						<input type="checkbox" id="chr1">
+						<label for="chr1">Enabled</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" async src="popup.js"></script>
+</html>

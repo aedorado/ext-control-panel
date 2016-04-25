@@ -1,0 +1,22 @@
+{
+   "description": "Easily enable/disable chrome extensions.",
+   "manifest_version": 2,
+   "name": "Exty-Switchy",
+   "icons": {
+    /*"16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",*/
+    "512": "icons/icon512.png"
+  },
+   "background": {
+      /*"scripts": ["bg.js"]*/
+   },
+   "browser_action": {
+      "default_icon": "icons/icon512.png",
+      "default_popup": "popup.html",
+      "default_title": "Easy Switching."
+   },
+   "permissions": [ "management"],
+   // "update_url": "",
+   "version": "1.0"
+}
