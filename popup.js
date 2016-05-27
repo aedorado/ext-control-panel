@@ -94,3 +94,7 @@ function display(extension) {
 document.getElementById('github-icon').addEventListener('click', function() {
 	window.open('https://github.com/aedorado/ext-control-panel');
 }, false);
+
+document.getElementById('extensions-page').addEventListener('click', function() {
+	window.open('https://github.com/aedorado/ext-control-panel');
+}, false);

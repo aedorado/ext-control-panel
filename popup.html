@@ -19,7 +19,17 @@
 				padding: 6px;
 				text-align: center;
 				position: relative;
-				box-shadow: 0 0 4px #ccc;
+				box-shadow: 0 0 3px #ccc;
+			}
+
+			.extension-div-enabled:hover, .extension-div-disabled:hover {
+				margin: 8px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				padding: 6px;
+				text-align: center;
+				position: relative;
+				box-shadow: 0 0 6px #bbb;
 			}
 
 			.extension-div-enabled .name-div {
@@ -64,6 +74,11 @@
 				position: relative;
 				left: 10px;
 				top: 3px;
+				cursor: pointer;
+			}
+
+			#extensions-page {
+				cursor: pointer;
 			}
 
 			.desc-div {
@@ -75,9 +90,12 @@
 		</style>
 	</head>
 	<body>
-		<h1>EXTY-SWITCHY<span id="github-icon"><img src="icons/github.svg"></span></h1>
+		<h1>EXTY-SWITCHY
+			<span id="extensions-page">E</span>
+			<span id="github-icon"><img src="icons/github.svg"></span>
+		</h1>
 		<div id="container">
-			<div class="extension-div-enabled">
+<!-- 			<div class="extension-div-enabled">
 				<div class="name-div">Grammarly</div>
 				<div class="left-content">				
 					<div class="desc-div">this extension does this this extension does this n does this this extension does this n does this this extension does this this extension does this</div>
@@ -89,7 +107,7 @@
 				<div class="right-img">
 					<img src="https://i.stack.imgur.com/YDRAT.jpg?s=48&g=1" alt="">
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</body>
 	<script type="text/javascript" async src="popup.js"></script>
