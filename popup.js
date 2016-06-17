@@ -1,10 +1,7 @@
 chrome.management.getAll(function(allExtensions) {
 	allExtensions.sort(function(left, right){
 	    var nameorder = left.name === right.name ? 0 : (left.name < right.name ? -1 : 1);
-	    if(
-	        (left.enabled && right.enabled) || 
-	        (!left.enabled && !right.enabled)
-	    ) {
+	    if ((left.enabled && right.enabled) || (!left.enabled && !right.enabled)) {
 	        return nameorder;
 	    } else if(left.enabled) {
 	        return -1;
@@ -15,7 +12,7 @@ chrome.management.getAll(function(allExtensions) {
 
 	allExtensions.forEach(function(extension) {
 		display(extension);
-		console.log(extension);
+		// console.log(extension);
 	});
 });
 
@@ -41,6 +38,7 @@ function display(extension) {
 	//  create an aptions div which is part of the left div
 	//  <div class="options">
 	var optionsDiv = document.createElement('div');
+	optionsDiv.classList.add('checkbox-div');
 
 	var checkbox = document.createElement('input');
 	checkbox.setAttribute('id', extension.id);
@@ -95,6 +93,6 @@ document.getElementById('github-icon').addEventListener('click', function() {
 	window.open('https://github.com/aedorado/ext-control-panel');
 }, false);
 
-document.getElementById('extensions-page').addEventListener('click', function() {
-	window.open('https://github.com/aedorado/ext-control-panel');
-}, false);
+// document.getElementById('extensions-page').addEventListener('click', function() {
+// 	window.open('https://github.com/aedorado/ext-control-panel');
+// }, false);

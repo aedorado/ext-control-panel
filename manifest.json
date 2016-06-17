@@ -1,5 +1,5 @@
 {
-   "description": "Easily enable/disable chrome extensions.",
+   "description": "Easily enable/disable chrome extensions with ease.",
    "manifest_version": 2,
    "name": "Exty-Switchy",
    "icons": {

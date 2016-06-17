@@ -16,20 +16,14 @@
 				margin: 8px;
 				border: 1px solid #ddd;
 				border-radius: 4px;
-				padding: 6px;
 				text-align: center;
 				position: relative;
 				box-shadow: 0 0 3px #ccc;
+				padding-bottom: 8px;
 			}
 
 			.extension-div-enabled:hover, .extension-div-disabled:hover {
-				margin: 8px;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-				padding: 6px;
-				text-align: center;
-				position: relative;
-				box-shadow: 0 0 6px #bbb;
+				box-shadow: 0 0 8px #aaa;
 			}
 
 			.extension-div-enabled .name-div {
@@ -43,16 +37,17 @@
 			.name-div {
 				border-bottom: 1px solid #ddd;
 				padding-bottom: 2px;
-				font-weight: bold;
+				font-weight: lighter;
+				font-size: 1.1em;
 				color: white;
+				padding: 3px;
+    			margin-bottom: 6px;
 			}
 
 			.right-img {
 				width: 44px;
 				height: 44px;
 				display: inline;
-				/*float: left;*/
-				/*position: absolute;*/
 			}
 
 			.right-img img {
@@ -62,10 +57,10 @@
 
 			.left-content {
 				width: 80%;
-				/*height: 100%;*/
 				display: inline;
 				display: inline-block;
-				float: left;
+				float: right;
+			    border-left: 1px solid #ddd;
 			}
 
 			#github-icon img {
@@ -87,11 +82,30 @@
 				overflow: hidden;
 			}
 
+			.checkbox-div {
+				margin-top: 5px;
+			}
+
+			input {
+			    width: 13px;
+			    height: 13px;
+			    padding: 0;
+			    margin:0;
+			    vertical-align: bottom;
+			    position: relative;
+			    top: -1px;
+			    overflow: hidden;
+			}
+
+			label {
+				cursor: pointer;
+			}
+
 		</style>
 	</head>
 	<body>
 		<h1>EXTY-SWITCHY
-			<span id="extensions-page">E</span>
+			<!-- <span id="extensions-page">E</span> -->
 			<span id="github-icon"><img src="icons/github.svg"></span>
 		</h1>
 		<div id="container">
