@@ -12,7 +12,6 @@ chrome.management.getAll(function(allExtensions) {
 
 	allExtensions.forEach(function(extension) {
 		display(extension);
-		// console.log(extension);
 	});
 });
 
@@ -22,70 +21,105 @@ function display(extension) {
 	var extensionDiv = document.createElement('div');
 	extensionDiv.classList.add(extension.enabled? 'extension-div-enabled': 'extension-div-disabled');
 
+
 	// create and append the name div
 	var nameDiv = document.createElement('div');	// <div class="name-div">Grammarly</div>
 	nameDiv.classList.add('name-div');
 	nameDiv.innerHTML = extension.name;
 	extensionDiv.appendChild(nameDiv);
 
-	// create the desc div
-	// <div class="desc">this extension does this this extension does this this extension does this</div>
-	var descDiv = document.createElement('div');
-	descDiv.classList.add('desc-div');
-	descDiv.setAttribute('title', extension.description);
-	descDiv.innerHTML = extension.description.length >= 85 ? (extension.description.substring(0, 85) + '...') : extension.description;
 
-	//  create an aptions div which is part of the left div
-	//  <div class="options">
-	var optionsDiv = document.createElement('div');
-	optionsDiv.classList.add('checkbox-div');
+	var row = document.createElement('div');
+	row.classList.add('row');
 
-	var checkbox = document.createElement('input');
-	checkbox.setAttribute('id', extension.id);
-	checkbox.setAttribute('type', 'checkbox');
-	if (extension.enabled) {
-		checkbox.setAttribute('checked', extension.enabled);
-	}
-	checkbox.addEventListener('click', function() {
-		if (this.checked) {
-			chrome.management.setEnabled(this.id, true);
-			this.parentNode.parentNode.parentNode.classList.add('extension-div-enabled')
-			this.parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
-			this.nextSibling.innerHTML = "Enabled";
-		} else {
-			chrome.management.setEnabled(this.id, false);
-			this.parentNode.parentNode.parentNode.classList.add('extension-div-disabled')
-			this.parentNode.parentNode.parentNode.classList.remove('extension-div-enabled');
-			this.nextSibling.innerHTML = "Disabled";
-		}
-	}, false);
-
-	var label = document.createElement('label');
-	label.setAttribute('for', extension.id);
-	label.appendChild(document.createTextNode(extension.enabled? "Enabled": "Disabled"));
-
-	optionsDiv.appendChild(checkbox);
-	optionsDiv.appendChild(label);
 
 	var leftDiv = document.createElement('div');
-	leftDiv.classList.add('left-content');
-
-	leftDiv.appendChild(descDiv);
-	leftDiv.appendChild(optionsDiv);
-
-	extensionDiv.appendChild(leftDiv);
-
-	// create and append the rightDiv
-	// <div class="right-img">
-	// 		<img src="https://i.stack.imgur.com/YDRAT.jpg?s=48&g=1" alt="">
-	// </div>
-	var rightDiv = document.createElement('div');
-	rightDiv.classList.add('right-img');
+	leftDiv.classList.add('left-div');
 	var img = document.createElement('img');
 	img.setAttribute('src', extension.icons.length == 1 ? extension.icons[0].url : extension.icons[1].url);
-	rightDiv.appendChild(img);
-	extensionDiv.appendChild(rightDiv);
+	leftDiv.appendChild(img);
+	row.appendChild(leftDiv);
 
+
+	var midDiv = document.createElement('div');
+	midDiv.classList.add('mid-div');
+	midDiv.setAttribute('title', extension.description);
+	midDiv.innerHTML = extension.description.length >= 90 ? (extension.description.substring(0, 90) + '...') : extension.description;
+	row.appendChild(midDiv);
+
+
+	var rightDiv = document.createElement('div');
+	rightDiv.classList.add('right-div');
+
+	var startButton = document.createElement('img');
+	startButton.setAttribute('class', 'start-button');
+	startButton.setAttribute('src', 'icons/power.svg');
+	startButton.setAttribute('id', 'start-' + extension.id)
+	startButton.addEventListener('click', function() {
+		var element = this;
+		chrome.management.get(this.id.substring(6), function(ext) {
+			if (ext.enabled) {
+				chrome.management.setEnabled(this.args[0], false);
+				element.parentNode.parentNode.parentNode.classList.add('extension-div-disabled')
+				element.parentNode.parentNode.parentNode.classList.remove('extension-div-enabled');
+			} else {
+				chrome.management.setEnabled(this.args[0], true);
+				element.parentNode.parentNode.parentNode.classList.add('extension-div-enabled')
+				element.parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
+			}
+		});
+	}, false);
+
+	var deleteButton = document.createElement('img');
+	deleteButton.setAttribute('class', 'delete-button');
+	deleteButton.setAttribute('src', 'icons/garbage.svg');
+	deleteButton.setAttribute('id', 'delete-' + extension.id)
+	deleteButton.addEventListener('click', function() {
+		chrome.management.uninstall(this.id.substring(7));			
+	}, false);
+	deleteButton.addEventListener('mouseover', function() {
+		this.setAttribute('src', 'icons/garbage-hover.svg');	
+	}, false);
+	deleteButton.addEventListener('mouseout', function() {
+		this.setAttribute('src', 'icons/garbage.svg');			
+	}, false);
+
+	rightDiv.appendChild(deleteButton);
+	rightDiv.appendChild(startButton);
+	rightDiv.setAttribute('id', extension.id);
+
+
+	row.appendChild(rightDiv);
+
+	// var checkbox = document.createElement('input');
+	// checkbox.setAttribute('id', extension.id);
+	// checkbox.setAttribute('type', 'checkbox');
+	// if (extension.enabled) {
+	// 	checkbox.setAttribute('checked', extension.enabled);
+	// }
+	// checkbox.addEventListener('click', function() {
+	// 	if (this.checked) {
+	// 		chrome.management.setEnabled(this.id, true);
+	// 		this.parentNode.parentNode.parentNode.classList.add('extension-div-enabled')
+	// 		this.parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
+	// 		this.nextSibling.innerHTML = "Enabled";
+	// 	} else {
+	// 		chrome.management.setEnabled(this.id, false);
+	// 		this.parentNode.parentNode.parentNode.classList.add('extension-div-disabled')
+	// 		this.parentNode.parentNode.parentNode.classList.remove('extension-div-enabled');
+	// 		this.nextSibling.innerHTML = "Disabled";
+	// 	}
+	// }, false);
+
+	// var label = document.createElement('label');
+	// label.setAttribute('for', extension.id);
+	// label.appendChild(document.createTextNode(extension.enabled? "Enabled": "Disabled"));
+
+	// rightOptionsDiv.appendChild(checkbox);
+	// rightOptionsDiv.appendChild(label);
+
+
+	extensionDiv.appendChild(row);
 	container.appendChild(extensionDiv);
 }
 
