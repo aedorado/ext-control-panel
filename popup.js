@@ -19,7 +19,7 @@ function display(extension) {
 	var container = document.getElementById('container');
 
 	var extensionDiv = document.createElement('div');
-	extensionDiv.classList.add(extension.enabled? 'extension-div-enabled': 'extension-div-disabled');
+	extensionDiv.classList.add(extension.enabled ? 'extension-div-enabled': 'extension-div-disabled');
 
 
 	// create and append the name div
@@ -45,6 +45,7 @@ function display(extension) {
 	midDiv.classList.add('mid-div');
 	midDiv.setAttribute('title', extension.description);
 	midDiv.innerHTML = extension.description.length >= 90 ? (extension.description.substring(0, 90) + '...') : extension.description;
+	midDiv.innerHTML += (extension.description.length == 0) ? 'No description provided by app maker.': '';
 	row.appendChild(midDiv);
 
 
@@ -53,6 +54,7 @@ function display(extension) {
 
 	var startButton = document.createElement('img');
 	startButton.setAttribute('class', 'start-button');
+	startButton.setAttribute('title', (extension.enabled ? 'Turn Off': 'Turn On'));
 	startButton.setAttribute('src', 'icons/power.svg');
 	startButton.setAttribute('id', 'start-' + extension.id)
 	startButton.addEventListener('click', function() {
@@ -75,7 +77,12 @@ function display(extension) {
 	deleteButton.setAttribute('src', 'icons/garbage.svg');
 	deleteButton.setAttribute('id', 'delete-' + extension.id)
 	deleteButton.addEventListener('click', function() {
-		chrome.management.uninstall(this.id.substring(7));			
+		var idToRemove = this.id.substring(7);
+		var nodeToRemove = this.parentNode.parentNode.parentNode;
+		chrome.management.uninstall(this.id.substring(7));
+		chrome.management.onUninstalled.addListener(function(idToRemove) {
+			nodeToRemove.parentNode.removeChild(nodeToRemove);
+		});
 	}, false);
 	deleteButton.addEventListener('mouseover', function() {
 		this.setAttribute('src', 'icons/garbage-hover.svg');	
