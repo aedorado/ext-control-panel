@@ -15,23 +15,22 @@ chrome.management.getAll(function(allExtensions) {
 	});
 });
 
-function display(extension) {
+function display(extension, namelike='') {
 	var container = document.getElementById('container');
 
 	var extensionDiv = document.createElement('div');
 	extensionDiv.classList.add(extension.enabled ? 'extension-div-enabled': 'extension-div-disabled');
-
+	extensionDiv.classList.add('extension-div');
+	extensionDiv.setAttribute('name', extension.name.toLowerCase());
 
 	// create and append the name div
-	var nameDiv = document.createElement('div');	// <div class="name-div">Grammarly</div>
+	var nameDiv = document.createElement('div');
 	nameDiv.classList.add('name-div');
 	nameDiv.innerHTML = extension.name;
 	extensionDiv.appendChild(nameDiv);
 
-
 	var row = document.createElement('div');
 	row.classList.add('row');
-
 
 	var leftDiv = document.createElement('div');
 	leftDiv.classList.add('left-div');
@@ -40,14 +39,12 @@ function display(extension) {
 	leftDiv.appendChild(img);
 	row.appendChild(leftDiv);
 
-
 	var midDiv = document.createElement('div');
 	midDiv.classList.add('mid-div');
 	midDiv.setAttribute('title', extension.description);
 	midDiv.innerHTML = extension.description.length >= 90 ? (extension.description.substring(0, 90) + '...') : extension.description;
 	midDiv.innerHTML += (extension.description.length == 0) ? 'No description provided by app maker.': '';
 	row.appendChild(midDiv);
-
 
 	var rightDiv = document.createElement('div');
 	rightDiv.classList.add('right-div');
@@ -95,36 +92,7 @@ function display(extension) {
 	rightDiv.appendChild(startButton);
 	rightDiv.setAttribute('id', extension.id);
 
-
 	row.appendChild(rightDiv);
-
-	// var checkbox = document.createElement('input');
-	// checkbox.setAttribute('id', extension.id);
-	// checkbox.setAttribute('type', 'checkbox');
-	// if (extension.enabled) {
-	// 	checkbox.setAttribute('checked', extension.enabled);
-	// }
-	// checkbox.addEventListener('click', function() {
-	// 	if (this.checked) {
-	// 		chrome.management.setEnabled(this.id, true);
-	// 		this.parentNode.parentNode.parentNode.classList.add('extension-div-enabled')
-	// 		this.parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
-	// 		this.nextSibling.innerHTML = "Enabled";
-	// 	} else {
-	// 		chrome.management.setEnabled(this.id, false);
-	// 		this.parentNode.parentNode.parentNode.classList.add('extension-div-disabled')
-	// 		this.parentNode.parentNode.parentNode.classList.remove('extension-div-enabled');
-	// 		this.nextSibling.innerHTML = "Disabled";
-	// 	}
-	// }, false);
-
-	// var label = document.createElement('label');
-	// label.setAttribute('for', extension.id);
-	// label.appendChild(document.createTextNode(extension.enabled? "Enabled": "Disabled"));
-
-	// rightOptionsDiv.appendChild(checkbox);
-	// rightOptionsDiv.appendChild(label);
-
 
 	extensionDiv.appendChild(row);
 	container.appendChild(extensionDiv);
@@ -134,6 +102,13 @@ document.getElementById('github-icon').addEventListener('click', function() {
 	window.open('https://github.com/aedorado/ext-control-panel');
 }, false);
 
-// document.getElementById('extensions-page').addEventListener('click', function() {
-// 	window.open('https://github.com/aedorado/ext-control-panel');
-// }, false);
+document.getElementById('search').addEventListener('keyup', function(e) {
+	var searchTerm = e.target.value.toLowerCase();
+	var allExtensionDivs = document.getElementsByClassName('extension-div');
+	[].forEach.call(allExtensionDivs, function(ext) {
+		var extensionName = ext.getAttribute('name');
+		if (extensionName.indexOf(searchTerm) >= 0) {
+			console.log('Found : ' + extensionName);
+		}
+	});
+}, false);
