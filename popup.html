@@ -5,6 +5,7 @@
 		<style>
 			body {
 			    width: 400px;
+				height: auto;
 			    font-family: Verdana;
 			}
 
@@ -12,17 +13,52 @@
 				text-align: center;
 			}
 
-			.extension-div-enabled, .extension-div-disabled {
-				margin: 8px;
-				border: 1px solid #ddd;
+			#search {
+				display: block;
+				width: 96%;
+				position: relative;
+				left: 1%;
+				height: 24px;
+				padding: 4px 4px;
+				font-size: 14px;
+				line-height: 1.42857143;
+				color: #555;
+				background-color: #fff;
+				background-image: none;
+				border: 1px solid #ccc;
 				border-radius: 4px;
+				box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+				transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			}
+
+			#search:focus {
+				border-color: #66afe9;
+				outline: 0;
+				box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+			}
+
+			#container {
+				width: 97.5%;
+				left: 0%;
+				position: relative;
+			}
+
+			.extension-div {
+				margin: 8px;
+				height: 70px;
+				width: 100%;
+				left: -1%;
+				border: 1px solid #ddd;
 				text-align: center;
 				position: relative;
 				box-shadow: 0 0 3px #ccc;
 				padding-bottom: 8px;
+				transition: all 0.5s ease;
+				border-bottom-right-radius: 2px;
+				border-bottom-left-radius: 2px;
 			}
 
-			.extension-div-enabled:hover, .extension-div-disabled:hover {
+			.extension-div:hover {
 				box-shadow: 0 0 8px #aaa;
 			}
 
@@ -36,7 +72,7 @@
 
 			.name-div {
 				border-bottom: 1px solid #ddd;
-				padding-bottom: 2px;
+				/*padding-bottom: 2px;*/
 				font-weight: lighter;
 				font-size: 1.2em;
 				color: white;
@@ -91,14 +127,27 @@
 				top: 3px;
 				cursor: pointer;
 			}
+
+			.shrink-and-disappear {
+				height: 0px;
+				width: 0px;
+				opacity: 0;
+				left: 50%;
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.hide {
+				display: none;
+			}
+
 		</style>
 	</head>
 	<body>
 		<h1>EXTY-SWITCHY
-			<!-- <span id="extensions-page">E</span> -->
 			<span id="github-icon"><img src="icons/github.svg"></span>
 		</h1>
-		<input type="text" id="search">
+		<input type="text" id="search" placeholder="Search...">
 		<div id="container"></div>
 	</body>
 	<script type="text/javascript" async src="popup.js"></script>

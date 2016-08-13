@@ -107,8 +107,12 @@ document.getElementById('search').addEventListener('keyup', function(e) {
 	var allExtensionDivs = document.getElementsByClassName('extension-div');
 	[].forEach.call(allExtensionDivs, function(ext) {
 		var extensionName = ext.getAttribute('name');
-		if (extensionName.indexOf(searchTerm) >= 0) {
-			console.log('Found : ' + extensionName);
+		if (extensionName.indexOf(searchTerm) == -1) {
+			ext.classList.add('hide');			
+			// ext.classList.add('shrink-and-disappear');
+		} else {
+			ext.classList.remove('hide');						
+			// ext.classList.remove('shrink-and-disappear');
 		}
 	});
 }, false);
