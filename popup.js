@@ -17,11 +17,16 @@ var AllExt = React.createClass({
 		var rows = [];
 
 		this.props.extensions.forEach(function (ext, i) {
+			var iconSource = '';
+			if (ext.icons !== undefined) {
+				iconSource = ext.icons.length == 1 ? ext.icons[0].url : ext.icons[1].url; 
+			}
+			
 			rows.push(
 				<div className={"extension-div " + (ext.enabled ? 'extension-div-enabled' : 'extension-div-disabled') } name={ext.name.toLowerCase() }>
 					<div className="name-div">{ext.name}</div>
 					<div className="row">
-						<div className="left-div"><img src={ext.icons.length == 1 ? ext.icons[0].url : ext.icons[1].url} /></div>
+						<div className="left-div"><img src={iconSource} /></div>
 						<div className="mid-div" title={ext.description}>{ext.description.length >= 90 ? (ext.description.substring(0, 90) + '...') : (ext.description.length ? ext.description : 'NO DESC') }</div>
 						<div className="right-div" id={ext.id}><DelImg extid={ext.id} /><ToggleImg extid={ext.id} enabled={ext.enabled}/></div>
 					</div>
