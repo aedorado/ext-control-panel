@@ -1,3 +1,26 @@
+var GLOBALS = {
+	inactiveExts: 0,
+	activeExts: 0,
+
+	rewrite: function() {
+		document.getElementById('num-all').innerHTML = (this.activeExts + this.inactiveExts);
+		document.getElementById('num-active').innerHTML = (this.activeExts); 
+		document.getElementById('info').classList.remove('hide');
+	},
+
+	updateForToggle: function(newState) {
+		if (newState === 'on') {
+			--this.inactiveExts;
+			++this.activeExts;
+		} else if (newState == 'off') {
+			++this.inactiveExts;
+			--this.activeExts;
+		}
+		this.rewrite();
+	}
+
+}
+
 chrome.management.getAll(function (allExtensions) {
 	allExtensions.sort(function (left, right) {
 		var nameorder = left.name === right.name ? 0 : (left.name < right.name ? -1 : 1);
@@ -15,12 +38,16 @@ chrome.management.getAll(function (allExtensions) {
 var AllExt = React.createClass({
 	render: function () {
 		var rows = [];
-					
+
 		this.props.extensions.forEach(function (ext, i) {
+			// 1 -  count number of extensions
+			ext.enabled ? ++GLOBALS.activeExts: ++(GLOBALS.inactiveExts);
+			// 2 - check if icon exists for this extension
 			var iconSource = '';
 			if (ext.icons !== undefined) {
 				iconSource = ext.icons.length == 1 ? ext.icons[0].url : ext.icons[1].url; 
 			}
+			// 3 - create a row for the extension
 			rows.push(
 				<div className={"extension-div " + (ext.enabled ? 'extension-div-enabled' : 'extension-div-disabled') } name={ext.name.toLowerCase() }>
 					<div className="name-div">{ext.name}</div>
@@ -32,7 +59,7 @@ var AllExt = React.createClass({
 				</div>
 			);
 		});
-
+		GLOBALS.rewrite();
 		return (<div>{rows}</div>)
 	}
 });
@@ -43,12 +70,13 @@ var ToggleImg = React.createClass({
 		var idToToggle = this.props.extid;
 		chrome.management.get(idToToggle, function (ext) {
 			if (ext.enabled) {
+				GLOBALS.updateForToggle('off');
 				chrome.management.setEnabled(idToToggle, false);
 				document.getElementById('toggle-' + idToToggle).setAttribute('title', 'Turn On');
-				console.log(document.getElementById('toggle-' + idToToggle));
 				document.getElementById('toggle-' + idToToggle).parentNode.parentNode.parentNode.classList.add('extension-div-disabled')
 				document.getElementById('toggle-' + idToToggle).parentNode.parentNode.parentNode.classList.remove('extension-div-enabled');
 			} else {
+				GLOBALS.updateForToggle('on');
 				chrome.management.setEnabled(idToToggle, true);
 				document.getElementById('toggle-' + idToToggle).setAttribute('title', 'Turn Off');
 				document.getElementById('toggle-' + idToToggle).parentNode.parentNode.parentNode.classList.add('extension-div-enabled')
