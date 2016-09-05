@@ -83,6 +83,7 @@ var ToggleImg = React.createClass({
 				document.getElementById('toggle-' + idToToggle).parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
 			}
 		});
+		focusInputField();
 	},
 
 	render: function () {
@@ -101,6 +102,7 @@ var DelImg = React.createClass({
 		chrome.management.onUninstalled.addListener(function (idToRemove) {
 			nodeToRemove.parentNode.removeChild(nodeToRemove);
 		});
+		focusInputField();
 	},
 
 	mouseOver: function() {
@@ -120,7 +122,11 @@ var DelImg = React.createClass({
 	}
 });
 
+function focusInputField() {
+	document.getElementById('search').focus();
+}
 
+focusInputField();
 document.getElementById('search').addEventListener('keyup', function (e) {
 	var searchTerm = e.target.value.toLowerCase();
 	var allExtensionDivs = document.getElementsByClassName('extension-div');
