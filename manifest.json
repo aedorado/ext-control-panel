@@ -10,7 +10,7 @@
       "default_popup": "popup.html",
       "default_title": "Easy Switching."
    },
-   "permissions": [ "management"],
+   "permissions": ["management", "tabs"],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "version": "1.0"
 }

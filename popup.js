@@ -83,7 +83,6 @@ var ToggleImg = React.createClass({
 				document.getElementById('toggle-' + idToToggle).parentNode.parentNode.parentNode.classList.remove('extension-div-disabled');
 			}
 		});
-		focusInputField();
 	},
 
 	render: function () {
@@ -139,3 +138,7 @@ document.getElementById('search').addEventListener('keyup', function (e) {
 		}
 	});
 }, false);
+
+document.getElementById('main-heading').addEventListener('click', function(e) {
+	chrome.tabs.create({ url:'https://github.com/aedorado/ext-control-panel'});
+});
