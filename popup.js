@@ -40,24 +40,29 @@ var AllExt = React.createClass({
 		var rows = [];
 
 		this.props.extensions.forEach(function (ext, i) {
-			// 1 -  count number of extensions
-			ext.enabled ? ++GLOBALS.activeExts: ++(GLOBALS.inactiveExts);
-			// 2 - check if icon exists for this extension
-			var iconSource = '';
-			if (ext.icons !== undefined) {
-				iconSource = ext.icons.length == 1 ? ext.icons[0].url : ext.icons[1].url; 
-			}
-			// 3 - create a row for the extension
-			rows.push(
-				<div className={"extension-div " + (ext.enabled ? 'extension-div-enabled' : 'extension-div-disabled') } name={ext.name.toLowerCase() }>
-					<div className="name-div">{ext.name}</div>
-					<div className="row">
-						<div className="left-div"><img src={iconSource} /></div>
-						<div className="mid-div" title={ext.description}>{ext.description.length >= 90 ? (ext.description.substring(0, 90) + '...') : (ext.description.length ? ext.description : 'NO DESC') }</div>
-						<div className="right-div" id={ext.id}><DelImg extid={ext.id} /><ToggleImg extid={ext.id} enabled={ext.enabled}/></div>
+			if (ext.name != 'Exty-Switchy') {
+				// 1 -  count number of extensions
+				ext.enabled ? ++GLOBALS.activeExts: ++(GLOBALS.inactiveExts);
+				// 2 - check if icon exists for this extension
+				var iconSource = '';
+				if (ext.icons !== undefined) {
+					iconSource = ext.icons.length == 1 ? ext.icons[0].url : ext.icons[1].url; 
+				}
+				// 3 - create a row for the extension
+				rows.push(
+					<div className={"extension-div " + (ext.enabled ? 'extension-div-enabled' : 'extension-div-disabled') } name={ext.name.toLowerCase() }>
+						<div className="name-div">{ext.name}</div>
+						<div className="row">
+							<div className="left-div"><img src={iconSource} /></div>
+							<div className="mid-div" title={ext.description}>{ext.description.length >= 65 ? (ext.description.substring(0, 65) + '...') : (ext.description.length ? ext.description : 'NO DESC') }</div>
+							<div className="right-div" id={ext.id}>
+								<DelImg extid={ext.id} />
+								<ToggleImg extid={ext.id} enabled={ext.enabled}/>
+							</div>
+						</div>
 					</div>
-				</div>
-			);
+				);
+			}
 		});
 		GLOBALS.rewrite();
 		return (<div>{rows}</div>)
@@ -139,6 +144,6 @@ document.getElementById('search').addEventListener('keyup', function (e) {
 	});
 }, false);
 
-document.getElementById('main-heading').addEventListener('click', function(e) {
-	chrome.tabs.create({ url:'https://github.com/aedorado/ext-control-panel'});
-});
+// document.getElementById('main-heading').addEventListener('click', function(e) {
+// 	chrome.tabs.create({ url:'https://github.com/aedorado/ext-control-panel'});
+// });

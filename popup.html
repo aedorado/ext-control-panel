@@ -11,8 +11,11 @@
 
 			#main-heading {
 				text-align: center;
-				margin-bottom: 12px;
+				margin: 4px;
 				cursor: pointer;
+				position: relative;
+				width: 90%;
+				left: 5%;
 			}
 
 			.hide {
@@ -60,7 +63,7 @@
 
 			.extension-div {
 				margin: 8px;
-				height: 70px;
+				height: 50px;
 				width: 100%;
 				left: -1%;
 				border: 1px solid #ddd;
@@ -88,15 +91,15 @@
 			.name-div {
 				border-bottom: 1px solid #ddd;
 				font-weight: lighter;
-				font-size: 1.2em;
+				font-size: 1.05em;
 				color: white;
-				padding: 3px;
-    			margin-bottom: 6px;
+				padding: 2px;
+    			margin-bottom: 1px;
 			}
 
 			.row {
 				width: 100%;
-				height: 40px;
+				height: 30px;
 				position: relative;
 			}
 
@@ -105,14 +108,15 @@
 			    display: inline-block;
 			    position: absolute;
 			    left: 1%;
+			    height: 100%;
 			}
 
 			.left-div img {
-				width: 36px;
+				height: 100%;
 			}
 
 			.mid-div {
-			    width: 60%;
+			    width: 67.5%;
 			    position: absolute;
 			    left: 12%;
 			    border-left: 1px solid #ddd;
@@ -122,24 +126,16 @@
 			}
 
 			.right-div {
-			    left: 74%;
+			    left: 82.5%;
     			position: absolute;
-    			width: 25%;
+    			height: 100%;
+    			width: 17.5%;
 			}
 
 			.right-div img {
-				width: 40px;
+				height: 90%;
     			cursor: pointer;
     			margin: 2px;
-			}
-
-			#github-icon img {
-				height: 24px;
-				width: 24px;
-				position: relative;
-				left: 10px;
-				top: 3px;
-				cursor: pointer;
 			}
 
 			.shrink-and-disappear {
@@ -155,13 +151,34 @@
 				display: none;
 			}
 
+			.social-icon {
+				height: 24px;
+				width: 24px;
+				position: relative;
+				left: 20px;
+				top: 5px;
+				cursor: pointer;
+			}
+
+			.social-icon img {
+				width: 6%;
+			}
+
+			#tw-icon img {
+				width: 7%;
+				top: 2px;
+    			position: relative;
+			}
+
 		</style>
 	</head>
 	<body>
-		<h1 id="main-heading">EXTY-SWITCHY
-			<span id="github-icon"><img src="icons/github.svg"></span>
+		<h3 id="main-heading">EXTY-SWITCHY
+			<a target="_blank" href="https://github.com/aedorado/ext-control-panel"><span id="gh-icon" class="social-icon"><img src="icons/github.svg"></span></a>
+			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//chrome.google.com/webstore/"><span id="fb-icon" class="social-icon"><img src="icons/fb.jpg"></span></a>
+			<a target="_blank" href="http://twitter.com/share?url=https://chrome.google.com/webstore/detail/&via=ExtySwitchy&text=Gain control over your extensions."><span id="tw-icon" class="social-icon"><img src="icons/tw.png"></span></a>
 			<br>
-		</h1>
+		</h3>
 		<div id="info" class="hide"><span id="num-all">x</span> extensions installed.<br><span id="num-active">x</span> are active.</div>
 		<input type="text" id="search" placeholder="Search...">
 		<div id="container"></div>
