@@ -144,6 +144,6 @@ document.getElementById('search').addEventListener('keyup', function (e) {
 	});
 }, false);
 
-// document.getElementById('main-heading').addEventListener('click', function(e) {
-// 	chrome.tabs.create({ url:'https://github.com/aedorado/ext-control-panel'});
-// });
+document.getElementById('ext-page-link').addEventListener('click', function(e) {
+	chrome.tabs.create({ url:'chrome://extensions'});
+});
