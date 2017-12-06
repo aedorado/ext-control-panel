@@ -145,5 +145,9 @@ document.getElementById('search').addEventListener('keyup', function (e) {
 }, false);
 
 document.getElementById('ext-page-link').addEventListener('click', function(e) {
+	chrome.tabs.create({ url:'https://chrome.google.com/webstore/detail/jkeghhfibnjhcimpmhokggpfhokjeljo'});
+});
+
+document.getElementById('ext-icon').addEventListener('click', function(e) {
 	chrome.tabs.create({ url:'chrome://extensions'});
 });

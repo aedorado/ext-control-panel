@@ -1,16 +1,18 @@
 {
-   "description": "Easily enable/disable chrome extensions.",
-   "manifest_version": 2,
-   "name": "Exty-Switchy",
-   "icons": {
-    "512": "icons/icon512.png"
-  },
    "browser_action": {
       "default_icon": "icons/icon512.png",
       "default_popup": "popup.html",
       "default_title": "Easy Switching."
    },
-   "permissions": ["management", "tabs"],
    "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'",
+   "description": "Easily enable/disable chrome extensions.",
+   "icons": {
+      "512": "icons/icon512.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvPZ/8FDYjAOSRK4SfyMmHKoyXyLZmp0HwHZQld9BEp4C8zmBkko4sOxHkhSy4bsaPVD7wl4G4qG5o63FOQUVPkLCCCHEeg1xGKfScf3x76rSREXnBbUPSuR4F7lIbzQNKTGrjsWUfrtWdqu+5dtmPjKFAv3JU7zid90S/9eBTbMYD0xF6pEUpB1kpalkcntVX3iXxXORzUBDYLXVK3ytme+kVJ6qzv4DKQvYABUdZFxp1rdtL5Pbvwuzw+9nVQyZxj3gzElmg9ay82EhTAgxcnWoq6t/2P5fX7KqHv1BPZ9gTsX4Wzb/XYvfWtG0skpQN1y3kZMDHa8Apu+UA5ODcwIDAQAB",
+   "manifest_version": 2,
+   "name": "Exty-Switchy",
+   "permissions": [ "management", "tabs" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.1.1"
 }
